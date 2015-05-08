@@ -9,5 +9,6 @@ public class Hello
          System.out.println("How many times does this print: "); 
          System.out.println(jj); 
       }
+      System.out.println("Yay!");
    }
 }
