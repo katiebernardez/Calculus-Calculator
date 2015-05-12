@@ -1,16 +1,16 @@
+import java.util.*;
+
 public abstract class Equation
-{
-   protected String equation;
-   
-   public Equation(String equation)
+{   
+   public Equation()
    {
-      this.equation = equation;   
+   
    }
    
-   abstract void translate();
+   //abstract String toString();
    
-   abstract String differentiate();
+   abstract List<Double> differentiate();
    
-   abstract String integrate();
+   abstract List<Double> integrate();
    
 }

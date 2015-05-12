@@ -9,11 +9,12 @@ public class CalculusCalculator
       introMessage();
       String equation = getEquationType(input);
       System.out.println();
-      int degree = getPolynomialDegree(input);
-      System.out.println();
-      List<Double> coefficients = getPolynomialCoefficients(input, degree);
-      System.out.println();
-      
+      //if(equation.equals("polynomial") {
+         int degree = getPolynomialDegree(input);
+         System.out.println();
+         List<Double> coefficients = getPolynomialCoefficients(input, degree);
+         System.out.println();
+      //} else { 
       
    }
    
