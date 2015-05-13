@@ -7,13 +7,15 @@ public class CalculusCalculator
       Scanner input = new Scanner(System.in);
       
       introMessage();
-      String equation = getEquationType(input);
-      System.out.println();
+      String equationType = getEquationType(input);
       //if(equation.equals("polynomial") {
          int degree = getPolynomialDegree(input);
-         System.out.println();
          List<Double> coefficients = getPolynomialCoefficients(input, degree);
+         Equation poly = new Polynomial(coefficients);
+         System.out.println(poly);
          System.out.println();
+         String equation = chooseOperation(input, poly);
+         System.out.println("Here is your new equation " + equation);         
       //} else { 
       
    }
@@ -107,5 +109,29 @@ public class CalculusCalculator
          
       input.nextLine(); //reset the scanner
       return newDouble;
+   }
+   
+   public static String chooseOperation(Scanner input, Equation e)
+   {
+      String prompt = "Integrate or Differentiate: ";
+      System.out.print(prompt);
+      String operationType = "";
+      
+      operationType = input.next();
+      
+      while(!(operationType.equalsIgnoreCase("integrate") || operationType.equalsIgnoreCase("differentiate")))
+      {
+         System.out.println("Input is not valid, you need to enter either integrate or differentiate");
+         System.out.print(prompt);
+         input.nextLine();
+         operationType = input.next();
+      }
+      input.nextLine();
+      
+      if(operationType.equalsIgnoreCase("integrate")) {
+         e.integrate();
+      } else {
+         e.differentiate(); }
+      return e.toString();  
    }
 }
