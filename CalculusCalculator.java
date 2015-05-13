@@ -8,25 +8,16 @@ public class CalculusCalculator
       
       introMessage();
       String operationType = getOperationType(input);
-      String equationType = getEquationType(input);
-      if(equationType.equalsIgnoreCase("polynomial")) {
-         int degree = getPolynomialDegree(input);
-         List<Double> coefficients = getPolynomialCoefficients(input, degree);
-         Equation poly = new Polynomial(coefficients);
-         System.out.println(poly);
-         System.out.println();
-         if(operationType.equalsIgnoreCase("integrate")) {
-            poly.integrate();
-         } 
-         else if(operationType.equalsIgnoreCase("differentiate")) {
-            poly.differentiate();
-         }
-         System.out.println("Here is your new equation: " + poly.toString());         
+      Equation e = getEquation(input, operationType);
+      System.out.println(e);
+      System.out.println();
+      if(operationType.equalsIgnoreCase("integrate")) {
+         e.integrate();
       } 
-      else if(equationType.equalsIgnoreCase("trigonometric")) {
-      
+      else if(operationType.equalsIgnoreCase("differentiate")) {
+         e.differentiate();
       }
-      
+      System.out.println("Here is your new equation: " + e.toString());         
    }
    
    public static void introMessage()
@@ -37,6 +28,37 @@ public class CalculusCalculator
    }
 
 //all methods used by all types of equations   
+   public static Equation getEquation(Scanner input, String operationType)
+   {
+      String equationType = getEquationType(input);
+      Equation e;
+      //if(equationType.equalsIgnoreCase("polynomial")) {
+      int degree = getPolynomialDegree(input);
+      List<Double> coefficients = getPolynomialCoefficients(input, degree);
+      e = new Polynomial(coefficients);
+      //} 
+   //       else if(equationType.equalsIgnoreCase("trigonometric")) {
+   //          
+   //       }
+      return e;
+   }
+   
+   public static Equation getInsideFunction(Scanner input, String operationType)
+   {
+      Equation inside;
+      if(operationType.equalsIgnoreCase("integrate")) {
+         System.out.println("Inside the function, you may have only a polynomial of up to 1st degree");
+         int degree=getInt(input, "Choose polynomial degree (0 or 1): ", 0, 1);
+         List<Double> coefficients = getPolynomialCoefficients(input, degree);
+         inside = new Polynomial(coefficients);
+      } 
+      else {
+         System.out.println("Inside the function, you may have any other type of equation");
+         inside = getEquation(input, operationType);
+      }
+      return inside;
+   }
+   
    public static String getEquationType(Scanner input)
    {
       String prompt = "Type of equation (polynomial, trigonometric, or exponential): ";
@@ -193,20 +215,6 @@ public class CalculusCalculator
       }
       input.nextLine();
       return trigType;
-   }
-   
-   public static Equation getInsideFunction(Scanner input, String operationType)
-   {
-      if(operationType.equalsIgnoreCase("integrate")) {
-         System.out.println("Inside the function, you may have only a polynomial of up to 1st degree");
-         int degree=getInt(input, "Choose polynomial degree (0 or 1): ", 0, 1);
-         List<Double> coefficients = getPolynomialCoefficients(input, degree);
-         Equation inside = new Polynomial(coefficients);
-      } else {
-         System.out.println("Inside the function, you may have any other type of equation");
-         Equation inside;
-      }
-      return inside;
    }
 
 //all methods used for exponential functions specifically
