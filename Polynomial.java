@@ -12,7 +12,7 @@ public class Polynomial extends Equation
       list.add(5.0);
       System.out.println(list);
       Polynomial p = new Polynomial(list);
-      list=p.differentiate();
+      list=p.integrate();
       System.out.println(list);
       System.out.println(p);
    }
