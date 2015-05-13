@@ -6,11 +6,14 @@ public abstract class Equation
    {
    
    }
+      
+   abstract String differentiate();
    
-   //abstract String toString();
+   abstract String integrate();
    
-   abstract List<Double> differentiate();
-   
-   abstract List<Double> integrate();
-   
+   protected double round(double number)
+   {
+      double rounded=(double) Math.round(number*1000)/1000;
+      return rounded;
+   }  
 }

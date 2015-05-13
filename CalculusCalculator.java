@@ -32,18 +32,22 @@ public class CalculusCalculator
    {
       String equationType = getEquationType(input);
       Equation e;
-      //if(equationType.equalsIgnoreCase("polynomial")) {
-      int degree = getPolynomialDegree(input);
-      List<Double> coefficients = getPolynomialCoefficients(input, degree);
-      e = new Polynomial(coefficients);
-      //} 
-   //       else if(equationType.equalsIgnoreCase("trigonometric")) {
-   //          
-   //       }
+   // if(equationType.equalsIgnoreCase("polynomial")) {
+         int degree = getPolynomialDegree(input);
+         List<Double> coefficients = getPolynomialCoefficients(input, degree);
+         e = new Polynomial(coefficients);
+   // } else if(equationType.equalsIgnoreCase("trigonometric")) {
+   //    String function = getTrigFunction(input);
+   //    double coeff = getDouble(input, "Enter the coefficient that will be in front of the trig function: ");
+   //    Equation inside = getInsideEquation(input, operationType);
+   //    e = new Trigonometric(function, coeff, inside);
+   // } else //if a exponential function {
+   //  
+   // }
       return e;
    }
    
-   public static Equation getInsideFunction(Scanner input, String operationType)
+   public static Equation getInsideEquation(Scanner input, String operationType)
    {
       Equation inside;
       if(operationType.equalsIgnoreCase("integrate")) {
