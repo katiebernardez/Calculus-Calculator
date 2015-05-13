@@ -12,12 +12,12 @@ public class CalculusCalculator
       System.out.println(e);
       System.out.println();
       if(operationType.equalsIgnoreCase("integrate")) {
-         e.integrate();
+         System.out.println("Here is your new equation: " + e.integrate());
       } 
       else if(operationType.equalsIgnoreCase("differentiate")) {
-         e.differentiate();
+         System.out.println("Here is your new equation: " + e.differentiate());
       }
-      System.out.println("Here is your new equation: " + e.toString());         
+               
    }
    
    public static void introMessage()
@@ -32,18 +32,19 @@ public class CalculusCalculator
    {
       String equationType = getEquationType(input);
       Equation e;
-   // if(equationType.equalsIgnoreCase("polynomial")) {
+      if(equationType.equalsIgnoreCase("polynomial")) {
          int degree = getPolynomialDegree(input);
          List<Double> coefficients = getPolynomialCoefficients(input, degree);
          e = new Polynomial(coefficients);
-   // } else if(equationType.equalsIgnoreCase("trigonometric")) {
-   //    String function = getTrigFunction(input);
-   //    double coeff = getDouble(input, "Enter the coefficient that will be in front of the trig function: ");
-   //    Equation inside = getInsideEquation(input, operationType);
-   //    e = new Trigonometric(function, coeff, inside);
-   // } else //if a exponential function {
-   //  
-   // }
+   // } else if(equationType.equalsIgnoreCase("exponential")) {
+       //   
+      } 
+      else { //if a trig function
+         String function = getTrigFunction(input);
+         double coeff = getDouble(input, "Enter the coefficient that will be in front of the trig function: ");
+         Equation inside = getInsideEquation(input, operationType);
+         e = new Trigonometric(function, coeff, inside);
+      }
       return e;
    }
    
